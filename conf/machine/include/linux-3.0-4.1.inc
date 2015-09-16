@@ -8,9 +8,14 @@ PREFERRED_VERSION_imx-lib = "3.10.9-1.0.0"
 PREFERRED_VERSION_imx-vpu = "3.10.9-1.0.0"
 PREFERRED_VERSION_gpu-viv-bin-mx6q = "3.10.9-1.0.0-hfp"
 
+OVERLAY = "#overlay"
+OVERLAYFS = "#overlayfs"
+UNIONFS = "none"
+
 # 2.6.37 and later kernels use OMAP_SERIAL, ttyO2
 # earlier kernels use ttyS2
 SERIAL_CONSOLE = "115200 ttymxc0"
+
 KERNEL_MMC_BASE_DEV = "0"
 
 KERNEL_MMC_DEV = "${@${KERNEL_MMC_BASE_DEV}+${SDCARD_IMAGE}}"

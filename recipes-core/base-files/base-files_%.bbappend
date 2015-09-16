@@ -4,10 +4,13 @@ hostname := "homepilot"
 volatiles := ""
 
 do_install_append () {
-    PREFIX=""
-    test ${SDCARD_IMAGE} -eq 1 && PREFIX="sd"
-    LABEL="${PREFIX}${MACHINE}"
-    sed -i -e "s,@LABEL@,${LABEL},g" ${D}/${sysconfdir}/fstab
+    DEV_PFX="${ROOT_DEV_NAME}${ROOT_DEV_SEP}"
+
+    sed -i -e "s,@DEV_PFX@,${DEV_PFX},g" \
+         -e "s,@overlay@,${OVERLAY},g" -e "s,@overlayfs@,${OVERLAYFS},g" -e "s,@unionfs@,${UNIONFS},g" \
+        ${D}${sysconfdir}/fstab
+    test "${MACHINE}" = "bohr" && sed -i -e "s,ext[24],ubifs,g" \
+        ${D}${sysconfdir}/fstab
 
     install -d ${D}/data
     rm -f ${D}/var/log ${D}/var/tmp

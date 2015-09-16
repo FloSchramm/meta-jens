@@ -6,8 +6,9 @@ HP2_INSTALL = "service-df \
 	openjdk-jdk-blob-arm7 \
 	zway-blob \
 	hp-blob \
+        samba \
         wrkeyupload \
 	wrc-startup \
 	udev-hp \
-	sysdetails \
 "
+RDEPENDS_append = " packagegroup-base-zeroconf"
